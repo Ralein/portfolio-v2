@@ -39,14 +39,14 @@ export default function Projects() {
 
     // Generate gradient backgrounds for project cards without images
     const gradients = [
-        "linear-gradient(135deg, #0f172a 0%, #1e3a5f 50%, #0d2137 100%)",
-        "linear-gradient(135deg, #1a0533 0%, #2d1b69 50%, #1a0533 100%)",
-        "linear-gradient(135deg, #0f172a 0%, #134e4a 50%, #0f172a 100%)",
-        "linear-gradient(135deg, #1c1917 0%, #78350f 50%, #1c1917 100%)",
-        "linear-gradient(135deg, #0c0a1a 0%, #312e81 50%, #0c0a1a 100%)",
-        "linear-gradient(135deg, #0f172a 0%, #1e3a5f 50%, #164e63 100%)",
-        "linear-gradient(135deg, #1a0a2e 0%, #581c87 50%, #1a0a2e 100%)",
-        "linear-gradient(135deg, #0f172a 0%, #065f46 50%, #0f172a 100%)",
+        "linear-gradient(135deg, #020617 0%, #7f1d1d 50%, #020617 100%)",
+        "linear-gradient(135deg, #020617 0%, #9a3412 50%, #020617 100%)",
+        "linear-gradient(135deg, #0f172a 0%, #450a0a 50%, #0f172a 100%)",
+        "linear-gradient(135deg, #1c1917 0%, #7c2d12 50%, #1c1917 100%)",
+        "linear-gradient(135deg, #020617 0%, #b91c1c 50%, #020617 100%)",
+        "linear-gradient(135deg, #0f172a 0%, #7f1d1d 50%, #450606 100%)",
+        "linear-gradient(135deg, #020617 0%, #c2410c 50%, #020617 100%)",
+        "linear-gradient(135deg, #0f172a 0%, #991b1b 50%, #0f172a 100%)",
     ];
 
     return (

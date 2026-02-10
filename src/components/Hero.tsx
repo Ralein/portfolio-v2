@@ -25,7 +25,7 @@ export default function Hero({ }: HeroProps) {
         const speed = isDeleting ? 40 : 80;
 
         if (!isDeleting && displayText === currentRole) {
-            timeoutRef.current = setTimeout(() => setIsDeleting(true), 2000);
+            timeoutRef.current = setTimeout(() => setIsDeleting(true), 3000);
             return;
         }
 
@@ -52,7 +52,7 @@ export default function Hero({ }: HeroProps) {
         hidden: { opacity: 0 },
         visible: {
             opacity: 1,
-            transition: { staggerChildren: 0.15, delayChildren: 0.3 },
+            transition: { staggerChildren: 0.15, delayChildren: 2.0 },
         },
     };
 
@@ -69,10 +69,19 @@ export default function Hero({ }: HeroProps) {
         <section className="relative w-full h-screen min-h-[700px] flex items-center justify-center overflow-hidden" id="home">
             {/* Dynamic Background Elements */}
             <div className="absolute inset-0 z-0 overflow-hidden">
+                <video
+                    autoPlay
+                    muted
+                    playsInline
+                    className="absolute w-full h-[111%] object-cover object-top opacity-40 mix-blend-screen"
+                >
+                    <source src="/bg.webm" type="video/webm" />
+                </video>
+
                 {/* Refined Mesh Gradient */}
-                <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(0,212,255,0.05),transparent_70%)]" />
-                <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_30%,rgba(124,58,237,0.08),transparent_50%)]" />
-                <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_70%,rgba(236,72,153,0.05),transparent_60%)]" />
+                <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(255,77,77,0.05),transparent_70%)]" />
+                <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_30%,rgba(255,77,77,0.08),transparent_50%)]" />
+                <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_70%,rgba(249,115,22,0.05),transparent_60%)]" />
 
                 {/* Grid Overlay */}
                 <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:100px_100px] [mask-image:radial-gradient(ellipse_50%_50%_at_50%_50%,#000_70%,transparent_100%)]" />
@@ -90,9 +99,9 @@ export default function Hero({ }: HeroProps) {
                     animate="visible"
                     className="max-w-4xl mx-auto px-6 py-12 rounded-3xl backdrop-blur-[2px] bg-black/5 border border-white/5"
                 >
-                    <motion.div className="hero-role mx-auto mb-6" variants={itemVariants}>
-                        <span className="dot" />
-                        Available for opportunities
+                    <motion.div className="hero-role mx-auto mb-6 px-5 py-2 rounded-full bg-accent-red/10 border border-accent-red/20 backdrop-blur-md" variants={itemVariants}>
+                        <span className="dot bg-accent-red" />
+                        <span className="text-accent-red font-medium tracking-wide">Available for opportunities</span>
                     </motion.div>
 
                     <motion.h1
@@ -100,7 +109,7 @@ export default function Hero({ }: HeroProps) {
                         variants={itemVariants}
                     >
                         Hey! I&apos;m
-                        <span className="name-highlight block md:inline md:ml-4 bg-gradient-to-r from-accent-blue via-accent-purple to-accent-blue bg-[length:200%_auto] animate-gradient-text">Ralein Nova</span>
+                        <span className="name-highlight block md:inline md:ml-4 bg-gradient-to-r from-accent-red via-accent-orange to-accent-red bg-[length:200%_auto] animate-gradient-text">Ralein Nova</span>
                     </motion.h1>
 
                     <motion.p className="text-xl md:text-3xl text-text-secondary mb-12 leading-relaxed font-light" variants={itemVariants}>
@@ -109,7 +118,7 @@ export default function Hero({ }: HeroProps) {
                             {displayText}
                         </span>
                         <span
-                            className="inline-block w-[3px] h-[1.1em] bg-accent-blue translate-y-1 ml-1 animate-pulse shadow-[0_0_10px_var(--accent-blue)]"
+                            className="inline-block w-[3px] h-[1.1em] bg-accent-red translate-y-1 ml-1 animate-pulse shadow-[0_0_10px_var(--accent-red)]"
                         />
                         <br />
                         <span className="text-base md:text-xl opacity-70 mt-6 block max-w-2xl mx-auto">
@@ -120,7 +129,7 @@ export default function Hero({ }: HeroProps) {
                     <motion.div className="flex justify-center items-center gap-6" variants={itemVariants}>
                         <motion.a
                             href="#projects"
-                            className="btn-primary group relative overflow-hidden px-8 py-4 rounded-full bg-accent-blue text-white font-semibold transition-all hover:shadow-[0_0_20px_rgba(0,212,255,0.4)]"
+                            className="btn-primary group relative overflow-hidden px-8 py-4 rounded-full bg-accent-red text-white font-semibold transition-all hover:shadow-[0_0_20px_rgba(255,77,77,0.4)]"
                             whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.95 }}
                             onClick={(e) => {

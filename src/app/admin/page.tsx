@@ -8,6 +8,8 @@ import {
     HiTrash,
     HiExternalLink,
     HiLogout,
+    HiArrowUp,
+    HiArrowDown,
 } from "react-icons/hi";
 
 interface Project {
@@ -20,6 +22,7 @@ interface Project {
     githubUrl: string;
     image: string;
     featured: boolean;
+    position: number;
 }
 
 const emptyProject: Omit<Project, "id"> = {
@@ -31,6 +34,7 @@ const emptyProject: Omit<Project, "id"> = {
     githubUrl: "",
     image: "",
     featured: false,
+    position: 0,
 };
 
 export default function AdminDashboard() {
@@ -76,6 +80,7 @@ export default function AdminDashboard() {
             githubUrl: project.githubUrl,
             image: project.image,
             featured: project.featured,
+            position: project.position,
         });
         setTagsInput(project.tags.join(", "));
         setModalOpen(true);
@@ -118,6 +123,38 @@ export default function AdminDashboard() {
             await fetch(`/api/projects?id=${id}`, { method: "DELETE" });
             await loadProjects();
         } catch { }
+    };
+
+    const moveProject = async (index: number, direction: "up" | "down") => {
+        const newProjects = [...projects];
+        const targetIndex = direction === "up" ? index - 1 : index + 1;
+
+        if (targetIndex < 0 || targetIndex >= projects.length) return;
+
+        // Swap positions
+        const temp = newProjects[index];
+        newProjects[index] = newProjects[targetIndex];
+        newProjects[targetIndex] = temp;
+
+        // Update local state first for immediate feedback
+        setProjects([...newProjects]);
+
+        // Map new indices to positions
+        const positions = newProjects.map((p, i) => ({
+            id: p.id,
+            position: i,
+        }));
+
+        try {
+            await fetch("/api/projects", {
+                method: "PATCH",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ positions }),
+            });
+        } catch {
+            // Revert if API fails
+            loadProjects();
+        }
     };
 
     return (
@@ -164,6 +201,7 @@ export default function AdminDashboard() {
                 <table className="admin-table">
                     <thead>
                         <tr>
+                            <th style={{ width: 80 }}>Order</th>
                             <th>Title</th>
                             <th>Category</th>
                             <th>Tags</th>
@@ -172,8 +210,28 @@ export default function AdminDashboard() {
                         </tr>
                     </thead>
                     <tbody>
-                        {projects.map((project) => (
+                        {projects.map((project, index) => (
                             <tr key={project.id}>
+                                <td>
+                                    <div style={{ display: "flex", gap: 4 }}>
+                                        <button
+                                            className="admin-btn"
+                                            onClick={() => moveProject(index, "up")}
+                                            disabled={index === 0}
+                                            style={{ padding: "4px 8px" }}
+                                        >
+                                            <HiArrowUp />
+                                        </button>
+                                        <button
+                                            className="admin-btn"
+                                            onClick={() => moveProject(index, "down")}
+                                            disabled={index === projects.length - 1}
+                                            style={{ padding: "4px 8px" }}
+                                        >
+                                            <HiArrowDown />
+                                        </button>
+                                    </div>
+                                </td>
                                 <td style={{ fontWeight: 500 }}>{project.title}</td>
                                 <td>
                                     <span className="project-tag">{project.category}</span>

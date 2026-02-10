@@ -86,7 +86,7 @@ export default function Education() {
                                     }}
                                 >
                                     <HiAcademicCap
-                                        style={{ color: "var(--accent-blue)", fontSize: "1.2rem" }}
+                                        style={{ color: "var(--accent-red)", fontSize: "1.2rem" }}
                                     />
                                     <span className="edu-year">{edu.year}</span>
                                 </div>

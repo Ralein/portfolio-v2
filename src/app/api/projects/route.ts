@@ -9,13 +9,14 @@ function mapProject(row: any) {
         liveUrl: row.live_url,
         githubUrl: row.github_url,
         createdAt: row.created_at,
+        position: row.position || 0,
     };
 }
 
 // GET – public, no auth needed
 export async function GET() {
     try {
-        const projects = await sql`SELECT * FROM projects ORDER BY created_at DESC`;
+        const projects = await sql`SELECT * FROM projects ORDER BY position ASC, created_at DESC`;
         return NextResponse.json(projects.map(mapProject));
     } catch (error) {
         console.error("Database error:", error);
@@ -34,9 +35,13 @@ export async function POST(request: Request) {
         const body = await request.json();
         const { title, description, category, tags, liveUrl, githubUrl, image, featured } = body;
 
+        // Get max position to put new project at the end
+        const maxPosResult = await sql`SELECT MAX(position) as max_pos FROM projects`;
+        const nextPos = (maxPosResult[0]?.max_pos || 0) + 1;
+
         const newProject = await sql`
-      INSERT INTO projects (title, description, category, tags, live_url, github_url, image, featured)
-      VALUES (${title}, ${description}, ${category}, ${tags}, ${liveUrl}, ${githubUrl}, ${image}, ${featured})
+      INSERT INTO projects (title, description, category, tags, live_url, github_url, image, featured, position)
+      VALUES (${title}, ${description}, ${category}, ${tags}, ${liveUrl}, ${githubUrl}, ${image}, ${featured}, ${nextPos})
       RETURNING *
     `;
 
@@ -80,6 +85,28 @@ export async function PUT(request: Request) {
     } catch (error) {
         console.error("Database error:", error);
         return NextResponse.json({ error: "Failed to update project" }, { status: 500 });
+    }
+}
+
+// PATCH – bulk update positions (auth checked)
+export async function PATCH(request: Request) {
+    const cookie = request.headers.get("cookie") || "";
+    if (!cookie.includes("admin_token=")) {
+        return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    }
+
+    try {
+        const body = await request.json();
+        const { positions } = body; // Array of {id, position}
+
+        for (const item of positions) {
+            await sql`UPDATE projects SET position = ${item.position} WHERE id = ${item.id}`;
+        }
+
+        return NextResponse.json({ success: true });
+    } catch (error) {
+        console.error("Database error:", error);
+        return NextResponse.json({ error: "Failed to update positions" }, { status: 500 });
     }
 }
 
