@@ -1,0 +1,132 @@
+[
+    {
+        "id": "1",
+        "title": "NOREL — NOn RELay on Paper",
+        "description": "AI-powered, paperless identity sharing system using NFC/QR for tap-to-fill forms. Enables secure, offline-capable form automation in public services with smart form builder and real-time processing.",
+        "category": "AI/ML",
+        "tags": [
+            "Next.js",
+            "AI",
+            "NFC",
+            "QR Code",
+            "React"
+        ],
+        "liveUrl": "https://norel-ralein.vercel.app/",
+        "githubUrl": "https://github.com/Ralein/norel-app",
+        "image": "/projects/norel.png",
+        "featured": true
+    },
+    {
+        "id": "2",
+        "title": "Miralen — Inclusive Learning Platform",
+        "description": "An inclusive learning platform for the deaf, blind, and mute community using Morse code, visuals, and vibrations. Empowers users with multi-sensory interaction for accessible education.",
+        "category": "Web App",
+        "tags": [
+            "React",
+            "Accessibility",
+            "Morse Code",
+            "Vibration API"
+        ],
+        "liveUrl": "https://viola-app-ralein.vercel.app/",
+        "githubUrl": "https://github.com/Ralein",
+        "image": "/projects/miralen.png",
+        "featured": true
+    },
+    {
+        "id": "3",
+        "title": "Ravelion AI — Video Background Removal",
+        "description": "AI-powered video processing tool featuring intelligent background removal, object segmentation, and real-time video editing capabilities with GPU-accelerated processing.",
+        "category": "AI/ML",
+        "tags": [
+            "Next.js",
+            "Python",
+            "FastAPI",
+            "BiRefNet",
+            "AI"
+        ],
+        "liveUrl": "https://ravelion.vercel.app/",
+        "githubUrl": "https://github.com/Ralein/Ravelion-ai-final",
+        "image": "/projects/ravelion.png",
+        "featured": true
+    },
+    {
+        "id": "4",
+        "title": "Novira AI — Wireframe to Code",
+        "description": "Converts wireframes and design mockups into production-ready code. Uses AI to analyze visual layouts and generate responsive HTML/CSS/React components automatically.",
+        "category": "AI/ML",
+        "tags": [
+            "Next.js",
+            "AI",
+            "Computer Vision",
+            "Code Generation"
+        ],
+        "liveUrl": "https://novira-ai.vercel.app/",
+        "githubUrl": "https://github.com/Ralein/Novira-ai",
+        "image": "/projects/novira.png",
+        "featured": true
+    },
+    {
+        "id": "5",
+        "title": "Mood Maze — Puzzle Game",
+        "description": "Interactive puzzle game with mood-matching logic where players escape a maze by solving emotional challenges. Features dynamic difficulty scaling and beautiful visual effects.",
+        "category": "Web App",
+        "tags": [
+            "React",
+            "Game Dev",
+            "Canvas API",
+            "Vercel"
+        ],
+        "liveUrl": "https://mood-maze-ralein.vercel.app",
+        "githubUrl": "https://github.com/Ralein",
+        "image": "/projects/moodmaze.png",
+        "featured": true
+    },
+    {
+        "id": "6",
+        "title": "FocusFlow — Productivity App",
+        "description": "A note and task productivity app with dynamic task views, state management, and pomodoro timer integration. Helps users stay organized and focused.",
+        "category": "Web App",
+        "tags": [
+            "TypeScript",
+            "React",
+            "State Management",
+            "Productivity"
+        ],
+        "liveUrl": "",
+        "githubUrl": "https://github.com/Ralein/focus-flow",
+        "image": "/projects/focusflow.png",
+        "featured": false
+    },
+    {
+        "id": "7",
+        "title": "LegalDoc AI — Legal Document Assistant",
+        "description": "AI-powered legal document analysis and generation tool. Assists in drafting, reviewing, and understanding legal documents with natural language processing.",
+        "category": "AI/ML",
+        "tags": [
+            "Next.js",
+            "AI",
+            "NLP",
+            "Legal Tech"
+        ],
+        "liveUrl": "",
+        "githubUrl": "https://github.com/Ralein/LegalDoc-Ai",
+        "image": "/projects/legaldoc.png",
+        "featured": false
+    },
+    {
+        "id": "8",
+        "title": "Formcraft AI — Smart Form Builder",
+        "description": "Auto-generating forms using AI prompts with an intelligent UI. Create complex forms through natural language descriptions and export production-ready code.",
+        "category": "AI/ML",
+        "tags": [
+            "React",
+            "AI",
+            "Form Builder",
+            "Automation"
+        ],
+        "liveUrl": "",
+        "githubUrl": "https://github.com/Ralein/formcraft-ai",
+        "image": "/projects/formcraft.png",
+        "featured": false
+    }
+]
