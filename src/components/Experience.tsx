@@ -1,6 +1,7 @@
 "use client";
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
+import { GlowingEffect } from "./ui/glowing-effect";
 
 const experiences = [
     {
@@ -83,15 +84,25 @@ export default function Experience() {
                             transition={{ duration: 0.6, delay: i * 0.15 }}
                         >
                             <div className="timeline-dot" />
-                            <div className="timeline-card glass-card">
-                                <span className="timeline-date">{exp.date}</span>
-                                <h3 className="timeline-role">{exp.role}</h3>
-                                <p className="timeline-company">{exp.company}</p>
-                                <ul className="timeline-points">
-                                    {exp.points.map((point, j) => (
-                                        <li key={j}>{point}</li>
-                                    ))}
-                                </ul>
+                            <div className="relative h-full rounded-2xl border p-2 md:rounded-3xl md:p-3">
+                                <GlowingEffect
+                                    spread={40}
+                                    glow={true}
+                                    disabled={false}
+                                    proximity={64}
+                                    inactiveZone={0.01}
+                                    borderWidth={3}
+                                />
+                                <div className="timeline-card glass-card relative h-full rounded-xl">
+                                    <span className="timeline-date">{exp.date}</span>
+                                    <h3 className="timeline-role">{exp.role}</h3>
+                                    <p className="timeline-company">{exp.company}</p>
+                                    <ul className="timeline-points">
+                                        {exp.points.map((point, j) => (
+                                            <li key={j}>{point}</li>
+                                        ))}
+                                    </ul>
+                                </div>
                             </div>
                         </motion.div>
                     ))}

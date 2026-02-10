@@ -3,6 +3,7 @@ import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import { HiAcademicCap } from "react-icons/hi";
 import { HiBadgeCheck } from "react-icons/hi";
+import { GlowingEffect } from "./ui/glowing-effect";
 
 const education = [
     {
@@ -60,31 +61,40 @@ export default function Education() {
 
                 <div className="education-grid">
                     {education.map((edu, i) => (
-                        <motion.div
-                            key={i}
-                            className="edu-card glass-card"
-                            initial={{ opacity: 0, y: 30 }}
-                            animate={isInView ? { opacity: 1, y: 0 } : {}}
-                            transition={{ delay: i * 0.1 + 0.2 }}
-                            whileHover={{ y: -4 }}
-                        >
-                            <div
-                                style={{
-                                    display: "flex",
-                                    alignItems: "center",
-                                    gap: 8,
-                                    marginBottom: 8,
-                                }}
+                        <div key={i} className="relative h-full rounded-2xl border p-2 md:rounded-3xl md:p-3">
+                            <GlowingEffect
+                                spread={40}
+                                glow={true}
+                                disabled={false}
+                                proximity={64}
+                                inactiveZone={0.01}
+                                borderWidth={3}
+                            />
+                            <motion.div
+                                className="edu-card glass-card relative h-full rounded-xl"
+                                initial={{ opacity: 0, y: 30 }}
+                                animate={isInView ? { opacity: 1, y: 0 } : {}}
+                                transition={{ delay: i * 0.1 + 0.2 }}
+                                whileHover={{ y: -4 }}
                             >
-                                <HiAcademicCap
-                                    style={{ color: "var(--accent-blue)", fontSize: "1.2rem" }}
-                                />
-                                <span className="edu-year">{edu.year}</span>
-                            </div>
-                            <h3 className="edu-institution">{edu.institution}</h3>
-                            <p className="edu-degree">{edu.degree}</p>
-                            <p className="edu-detail">{edu.detail}</p>
-                        </motion.div>
+                                <div
+                                    style={{
+                                        display: "flex",
+                                        alignItems: "center",
+                                        gap: 8,
+                                        marginBottom: 8,
+                                    }}
+                                >
+                                    <HiAcademicCap
+                                        style={{ color: "var(--accent-blue)", fontSize: "1.2rem" }}
+                                    />
+                                    <span className="edu-year">{edu.year}</span>
+                                </div>
+                                <h3 className="edu-institution">{edu.institution}</h3>
+                                <p className="edu-degree">{edu.degree}</p>
+                                <p className="edu-detail">{edu.detail}</p>
+                            </motion.div>
+                        </div>
                     ))}
                 </div>
 

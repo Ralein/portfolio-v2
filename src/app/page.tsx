@@ -1,4 +1,3 @@
-"use client";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import About from "@/components/About";
@@ -7,9 +6,7 @@ import Experience from "@/components/Experience";
 import Education from "@/components/Education";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
-import { GlowingEffectDemo } from "@/components/demos/GlowingEffectDemo";
-
-export default function Home() {
+export default async function Home() {
     return (
         <>
             <Navbar />
@@ -19,11 +16,6 @@ export default function Home() {
                 <Projects />
                 <Experience />
                 <Education />
-                <section className="section">
-                    <div className="container">
-                        <GlowingEffectDemo />
-                    </div>
-                </section>
                 <Contact />
             </main>
             <Footer />

@@ -54,15 +54,6 @@ const socials = [
 export default function Contact() {
     const ref = useRef(null);
     const isInView = useInView(ref, { once: true, margin: "-100px" });
-    const [lottieData, setLottieData] = useState(null);
-
-    useEffect(() => {
-        // Try loading a contact Lottie, fail silently if not available
-        fetch("https://lottie.host/1b1f0e4c-0e5e-4b0a-8c0a-1a0b1c0d1e0f/mail.json")
-            .then((r) => r.json())
-            .then(setLottieData)
-            .catch(() => { });
-    }, []);
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();

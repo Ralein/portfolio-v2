@@ -1,12 +1,7 @@
 "use client";
 import { useEffect, useState, useRef } from "react";
 import { motion } from "framer-motion";
-import Lottie from "lottie-react";
 import { HiArrowDown } from "react-icons/hi";
-
-// We'll use a Lottie animation URL since we don't have local files
-const LOTTIE_URL =
-    "https://lottie.host/7ac4472a-b56a-4351-a4f9-bf7ee41e4de5/ufDPFCYnJi.json";
 
 const roles = [
     "Fullstack Developer",
@@ -16,22 +11,15 @@ const roles = [
     "AI Builder",
 ];
 
-export default function Hero() {
+interface HeroProps {
+}
+
+export default function Hero({ }: HeroProps) {
     const [roleIndex, setRoleIndex] = useState(0);
     const [displayText, setDisplayText] = useState("");
     const [isDeleting, setIsDeleting] = useState(false);
-    const [lottieData, setLottieData] = useState(null);
     const timeoutRef = useRef<ReturnType<typeof setTimeout>>(null);
 
-    // Load Lottie JSON
-    useEffect(() => {
-        fetch(LOTTIE_URL)
-            .then((res) => res.json())
-            .then(setLottieData)
-            .catch(() => { });
-    }, []);
-
-    // Typing effect
     useEffect(() => {
         const currentRole = roles[roleIndex];
         const speed = isDeleting ? 40 : 80;
@@ -78,81 +66,74 @@ export default function Hero() {
     };
 
     return (
-        <section className="hero" id="home">
-            {/* Background Orbs */}
-            <div className="hero-orb hero-orb-1" />
-            <div className="hero-orb hero-orb-2" />
-            <div className="hero-orb hero-orb-3" />
+        <section className="relative w-full h-screen min-h-[700px] flex items-center justify-center overflow-hidden" id="home">
+            {/* Dynamic Background Elements */}
+            <div className="absolute inset-0 z-0 overflow-hidden">
+                {/* Refined Mesh Gradient */}
+                <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(0,212,255,0.05),transparent_70%)]" />
+                <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_30%,rgba(124,58,237,0.08),transparent_50%)]" />
+                <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_70%,rgba(236,72,153,0.05),transparent_60%)]" />
 
-            <div className="hero-content">
+                {/* Grid Overlay */}
+                <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:100px_100px] [mask-image:radial-gradient(ellipse_50%_50%_at_50%_50%,#000_70%,transparent_100%)]" />
+            </div>
+
+            {/* Background Orbs with enhanced blur and scale */}
+            <div className="hero-orb hero-orb-1 opacity-25 blur-[120px] scale-125" />
+            <div className="hero-orb hero-orb-2 opacity-25 blur-[120px] scale-125" />
+            <div className="hero-orb hero-orb-3 opacity-15 blur-[100px]" />
+
+            <div className="container relative z-10">
                 <motion.div
-                    className="hero-text"
                     variants={containerVariants}
                     initial="hidden"
                     animate="visible"
+                    className="max-w-4xl mx-auto px-6 py-12 rounded-3xl backdrop-blur-[2px] bg-black/5 border border-white/5"
                 >
-                    <motion.div className="hero-role" variants={itemVariants}>
+                    <motion.div className="hero-role mx-auto mb-6" variants={itemVariants}>
                         <span className="dot" />
                         Available for opportunities
                     </motion.div>
 
-                    <motion.h1 variants={itemVariants}>
+                    <motion.h1
+                        className="text-5xl md:text-7xl lg:text-8xl font-bold mb-8 tracking-tighter"
+                        variants={itemVariants}
+                    >
                         Hey! I&apos;m
-                        <span className="name-highlight">Ralein Nova</span>
+                        <span className="name-highlight block md:inline md:ml-4 bg-gradient-to-r from-accent-blue via-accent-purple to-accent-blue bg-[length:200%_auto] animate-gradient-text">Ralein Nova</span>
                     </motion.h1>
 
-                    <motion.p className="hero-tagline" variants={itemVariants}>
+                    <motion.p className="text-xl md:text-3xl text-text-secondary mb-12 leading-relaxed font-light" variants={itemVariants}>
                         A{" "}
-                        <span className="gradient-text" style={{ fontWeight: 600 }}>
+                        <span className="gradient-text font-bold">
                             {displayText}
                         </span>
                         <span
-                            style={{
-                                borderRight: "2px solid var(--accent-blue)",
-                                marginLeft: 2,
-                                animation: "pulse-glow 1s ease-in-out infinite",
-                            }}
+                            className="inline-block w-[3px] h-[1.1em] bg-accent-blue translate-y-1 ml-1 animate-pulse shadow-[0_0_10px_var(--accent-blue)]"
                         />
                         <br />
-                        crafting fast, modern apps with a focus on UI/UX and AI
-                        integration.
+                        <span className="text-base md:text-xl opacity-70 mt-6 block max-w-2xl mx-auto">
+                            crafting high-performance, modern applications with a focus on immersive UI/UX and seamless AI integration.
+                        </span>
                     </motion.p>
 
-                    <motion.div className="hero-buttons" variants={itemVariants}>
+                    <motion.div className="flex justify-center items-center gap-6" variants={itemVariants}>
                         <motion.a
                             href="#projects"
-                            className="btn-primary"
+                            className="btn-primary group relative overflow-hidden px-8 py-4 rounded-full bg-accent-blue text-white font-semibold transition-all hover:shadow-[0_0_20px_rgba(0,212,255,0.4)]"
                             whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.95 }}
                             onClick={(e) => {
                                 e.preventDefault();
-                                document
-                                    .querySelector("#projects")
-                                    ?.scrollIntoView({ behavior: "smooth" });
+                                document.querySelector("#projects")?.scrollIntoView({ behavior: "smooth" });
                             }}
                         >
-                            View My Work
-                            <HiArrowDown />
+                            <span className="relative z-10 flex items-center gap-2">
+                                View My Work
+                                <HiArrowDown className="transition-transform group-hover:translate-y-1" />
+                            </span>
                         </motion.a>
-
                     </motion.div>
-                </motion.div>
-
-                <motion.div
-                    className="hero-visual"
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 0.8, delay: 0.5 }}
-                >
-                    <div className="hero-lottie-wrapper">
-                        {lottieData && (
-                            <Lottie
-                                animationData={lottieData}
-                                loop
-                                style={{ width: "100%", height: "auto" }}
-                            />
-                        )}
-                    </div>
                 </motion.div>
             </div>
 
@@ -160,7 +141,7 @@ export default function Hero() {
                 className="scroll-indicator"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                transition={{ delay: 2 }}
+                transition={{ delay: 3 }}
             >
                 <div className="mouse" />
                 <span>Scroll</span>
@@ -168,3 +149,4 @@ export default function Hero() {
         </section>
     );
 }
+

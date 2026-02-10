@@ -1,35 +1,35 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
 
 @layer base {
   :root {
-    --background: 222.2 84% 4.9%;
+    --background: 222.2 84% 2%;
     --foreground: 210 40% 98%;
 
-    --card: 222.2 84% 4.9%;
+    --card: 222.2 84% 3%;
     --card-foreground: 210 40% 98%;
 
-    --popover: 222.2 84% 4.9%;
+    --popover: 222.2 84% 3%;
     --popover-foreground: 210 40% 98%;
 
     --primary: 210 40% 98%;
     --primary-foreground: 222.2 47.4% 11.2%;
 
-    --secondary: 217.2 32.6% 17.5%;
+    --secondary: 217.2 32.6% 12%;
     --secondary-foreground: 210 40% 98%;
 
-    --muted: 217.2 32.6% 17.5%;
+    --muted: 217.2 32.6% 12%;
     --muted-foreground: 215 20.2% 65.1%;
 
-    --accent: 217.2 32.6% 17.5%;
+    --accent: 217.2 32.6% 12%;
     --accent-foreground: 210 40% 98%;
 
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
+    --border: 217.2 32.6% 12%;
+    --input: 217.2 32.6% 12%;
     --ring: 212.7 26.8% 83.9%;
     --radius: 0.5rem;
   }
@@ -39,11 +39,11 @@
   --font-inter: 'Inter';
   --font-space-grotesk: 'Space Grotesk';
 
-  /* Core Colors */
-  --bg-primary: #050a15;
-  --bg-secondary: #0a1128;
-  --bg-card: rgba(15, 23, 42, 0.6);
-  --bg-card-hover: rgba(20, 30, 55, 0.8);
+  /* Core Colors - Darkened */
+  --bg-primary: #020408;
+  --bg-secondary: #050a15;
+  --bg-card: rgba(10, 15, 30, 0.6);
+  --bg-card-hover: rgba(15, 20, 40, 0.8);
 
   /* Accent Colors */
   --accent-blue: #00d4ff;
@@ -56,19 +56,19 @@
   --gradient-primary: linear-gradient(135deg, #00d4ff, #7c3aed);
   --gradient-secondary: linear-gradient(135deg, #7c3aed, #ec4899);
   --gradient-gold: linear-gradient(135deg, #f59e0b, #ec4899);
-  --gradient-mesh: radial-gradient(ellipse at 20% 50%, rgba(0, 212, 255, 0.08) 0%, transparent 50%),
-    radial-gradient(ellipse at 80% 20%, rgba(124, 58, 237, 0.08) 0%, transparent 50%),
-    radial-gradient(ellipse at 50% 80%, rgba(236, 72, 153, 0.05) 0%, transparent 50%);
+  --gradient-mesh: radial-gradient(ellipse at 20% 50%, rgba(0, 212, 255, 0.05) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 20%, rgba(124, 58, 237, 0.05) 0%, transparent 50%),
+    radial-gradient(ellipse at 50% 80%, rgba(236, 72, 153, 0.03) 0%, transparent 50%);
 
   /* Text */
-  --text-primary: #f1f5f9;
+  --text-primary: #f8fafc;
   --text-secondary: #94a3b8;
   --text-muted: #64748b;
 
-  /* Glass */
-  --glass-bg: rgba(15, 23, 42, 0.5);
-  --glass-border: rgba(148, 163, 184, 0.1);
-  --glass-blur: 20px;
+  /* Glass - More subtle */
+  --glass-bg: rgba(5, 10, 20, 0.6);
+  --glass-border: rgba(148, 163, 184, 0.05);
+  --glass-blur: 16px;
 
   /* Spacing */
   --section-padding: 100px 0;
@@ -877,6 +877,7 @@ img {
   line-height: 1.6;
   display: -webkit-box;
   -webkit-line-clamp: 3;
+  line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
