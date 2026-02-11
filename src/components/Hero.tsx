@@ -73,18 +73,22 @@ export default function Hero({ }: HeroProps) {
                     autoPlay
                     muted
                     playsInline
-                    className="absolute w-full h-[111%] object-cover object-top opacity-40 mix-blend-screen"
+                    className="absolute top-0 left-0 w-full h-[100%] md:h-[111%] object-cover object-top opacity-40 mix-blend-screen pointer-events-none"
                 >
                     <source src="/bg.webm" type="video/webm" />
                 </video>
 
-                {/* Refined Mesh Gradient */}
-                <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(255,77,77,0.05),transparent_70%)]" />
-                <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_30%,rgba(255,77,77,0.08),transparent_50%)]" />
-                <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_70%,rgba(249,115,22,0.05),transparent_60%)]" />
+                {/* Refined Mesh Gradient (Clean Red/Dark) */}
+                <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(255,77,77,0.04),transparent_70%)]" />
+                <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_30%,rgba(255,77,77,0.06),transparent_50%)]" />
+                <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_70%,rgba(255,77,77,0.03),transparent_60%)]" />
 
                 {/* Grid Overlay */}
                 <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:100px_100px] [mask-image:radial-gradient(ellipse_50%_50%_at_50%_50%,#000_70%,transparent_100%)]" />
+
+                {/* Overlays at the end to ensure they are on top */}
+                <div className="absolute top-0 left-0 w-full h-32 bg-gradient-to-b from-black via-black/50 to-transparent pointer-events-none z-[2]" />
+                <div className="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-black via-black/50 to-transparent pointer-events-none z-[2]" />
             </div>
 
             {/* Background Orbs with enhanced blur and scale */}

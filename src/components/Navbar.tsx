@@ -73,18 +73,6 @@ export default function Navbar() {
                         ))}
                     </ul>
 
-                    <motion.a
-                        href="#contact"
-                        className="btn-primary navbar-cta navbar-cta-desktop"
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
-                        onClick={(e) => {
-                            e.preventDefault();
-                            handleClick("#contact");
-                        }}
-                    >
-                        Let&apos;s Talk
-                    </motion.a>
 
                     <button
                         className={`hamburger ${mobileOpen ? "open" : ""}`}

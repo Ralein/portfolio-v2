@@ -17,7 +17,7 @@ interface Project {
     featured: boolean;
 }
 
-const categories = ["All", "AI/ML", "Web App", "UI/UX"];
+const categories = ["All", "Live", "AI/ML", "Web App", "UI/UX"];
 
 export default function Projects() {
     const [projects, setProjects] = useState<Project[]>([]);
@@ -32,10 +32,11 @@ export default function Projects() {
             .catch(() => { });
     }, []);
 
-    const filtered =
-        filter === "All"
-            ? projects
-            : projects.filter((p) => p.category === filter);
+    const filtered = projects.filter((p) => {
+        if (filter === "All") return true;
+        if (filter === "Live") return !!p.liveUrl;
+        return p.category === filter;
+    });
 
     // Generate gradient backgrounds for project cards without images
     const gradients = [
@@ -117,21 +118,38 @@ export default function Projects() {
                                             justifyContent: "center",
                                             minHeight: "200px",
                                             width: "100%",
+                                            position: "relative",
                                         }}
                                     >
-                                        <span
-                                            style={{
-                                                fontSize: "2.5rem",
-                                                fontFamily: "'Space Grotesk', sans-serif",
-                                                fontWeight: 700,
-                                                color: "rgba(255,255,255,0.12)",
-                                                letterSpacing: "-0.02em",
-                                                textAlign: "center",
-                                                padding: "0 24px",
-                                            }}
-                                        >
-                                            {project.title.split("—")[0].trim()}
-                                        </span>
+                                        {project.liveUrl ? (
+                                            <iframe
+                                                src={project.liveUrl}
+                                                title={project.title}
+                                                loading="lazy"
+                                                className="border-0 absolute top-0 left-0"
+                                                style={{
+                                                    width: "250%",
+                                                    height: "250%",
+                                                    transform: "scale(0.4)",
+                                                    transformOrigin: "top left",
+                                                    pointerEvents: "none",
+                                                }}
+                                            />
+                                        ) : (
+                                            <span
+                                                style={{
+                                                    fontSize: "2.5rem",
+                                                    fontFamily: "'Space Grotesk', sans-serif",
+                                                    fontWeight: 700,
+                                                    color: "rgba(255,255,255,0.12)",
+                                                    letterSpacing: "-0.02em",
+                                                    textAlign: "center",
+                                                    padding: "0 24px",
+                                                }}
+                                            >
+                                                {project.title.split("—")[0].trim()}
+                                            </span>
+                                        )}
                                     </div>
 
                                     <div className="project-info flex flex-col flex-grow">
