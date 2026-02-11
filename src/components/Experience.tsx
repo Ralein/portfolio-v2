@@ -1,6 +1,6 @@
 "use client";
 import { useRef } from "react";
-import { motion, useInView } from "framer-motion";
+import { motion, useInView, useScroll, useSpring } from "framer-motion";
 import { GlowingEffect } from "./ui/glowing-effect";
 
 const experiences = [
@@ -48,7 +48,19 @@ const experiences = [
 
 export default function Experience() {
     const ref = useRef(null);
+    const timelineRef = useRef(null);
     const isInView = useInView(ref, { once: true, margin: "-100px" });
+
+    const { scrollYProgress } = useScroll({
+        target: timelineRef,
+        offset: ["start center", "end center"],
+    });
+
+    const scaleY = useSpring(scrollYProgress, {
+        stiffness: 100,
+        damping: 30,
+        restDelta: 0.001,
+    });
 
     return (
         <section className="section" id="experience" ref={ref}>
@@ -74,14 +86,31 @@ export default function Experience() {
                     </p>
                 </motion.div>
 
-                <div className="timeline">
+                <div className="timeline" ref={timelineRef}>
+                    {/* Animated Line */}
+                    <motion.div
+                        style={{
+                            scaleY,
+                            height: "100%",
+                            position: "absolute",
+                            top: 0,
+                            left: "50%",
+                            width: "2px",
+                            background: "linear-gradient(to bottom, var(--accent-red), var(--accent-orange))",
+                            transformOrigin: "top",
+                            translateX: "-50%",
+                            zIndex: 1, // Behind the dots (2) but above background
+                        }}
+                    />
+
                     {experiences.map((exp, i) => (
                         <motion.div
                             key={i}
                             className="timeline-item"
                             initial={{ opacity: 0, x: i % 2 === 0 ? -40 : 40 }}
-                            animate={isInView ? { opacity: 1, x: 0 } : {}}
-                            transition={{ duration: 0.6, delay: i * 0.15 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            viewport={{ once: true, margin: "-50px" }}
+                            transition={{ duration: 0.6, delay: i * 0.1 }}
                         >
                             <div className="timeline-dot" />
                             <div className="relative h-full rounded-2xl border p-2 md:rounded-3xl md:p-3">

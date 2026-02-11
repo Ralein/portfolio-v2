@@ -946,7 +946,7 @@ img {
   top: 0;
   bottom: 0;
   width: 2px;
-  background: linear-gradient(to bottom, var(--accent-red), var(--accent-orange), transparent);
+  background: rgba(255, 255, 255, 0.05);
   transform: translateX(-50%);
 }
 
@@ -1063,35 +1063,7 @@ img {
   color: var(--text-muted);
 }
 
-.certs-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  gap: 16px;
-  margin-top: 20px;
-}
 
-.cert-card {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 16px 20px;
-}
-
-.cert-icon {
-  font-size: 1.5rem;
-  color: var(--accent-gold);
-  flex-shrink: 0;
-}
-
-.cert-name {
-  font-size: 0.85rem;
-  font-weight: 500;
-}
-
-.cert-issuer {
-  font-size: 0.75rem;
-  color: var(--text-muted);
-}
 
 /* ============ CONTACT ============ */
 .contact-grid {
@@ -1540,7 +1512,5 @@ img {
     justify-content: center;
   }
 
-  .certs-grid {
-    grid-template-columns: 1fr;
-  }
+
 }

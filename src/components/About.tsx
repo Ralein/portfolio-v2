@@ -27,6 +27,15 @@ import { TbBrandFramerMotion } from "react-icons/tb";
 import { BiLogoSpringBoot } from "react-icons/bi";
 import { HiChevronLeft, HiChevronRight } from "react-icons/hi";
 
+const AdobeAnimateIcon = ({ className, style }: { className?: string; style?: any }) => (
+    <img
+        src="/an.png"
+        alt="Adobe Animate"
+        className={className}
+        style={{ ...style, width: "1em", height: "1em", objectFit: "contain", borderRadius: 4 }}
+    />
+);
+
 const techStack = [
     { name: "React", icon: SiReact, color: "#61DAFB" },
     { name: "Next.js", icon: SiNextdotjs, color: "#fff" },
@@ -46,6 +55,8 @@ const techStack = [
     { name: "InDesign", icon: SiAdobeindesign, color: "#FF3366" },
     { name: "Premiere Pro", icon: SiAdobepremierepro, color: "#2dd4bf" },
     { name: "Audition", icon: SiAdobeaudition, color: "#2dd4bf" },
+    { name: "Adobe Animate", icon: AdobeAnimateIcon, color: "#CC2900" },
+
     { name: "CorelDRAW", icon: SiCoreldraw, color: "#00E472" },
     { name: "Git", icon: SiGit, color: "#F05032" },
     { name: "Docker", icon: SiDocker, color: "#2496ED" },

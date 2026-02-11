@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { cookies } from "next/headers";
 import { sql } from "@/lib/db";
 
 // Helper to map DB row to frontend project object
@@ -26,8 +27,10 @@ export async function GET() {
 
 // POST – add project (auth checked via cookie)
 export async function POST(request: Request) {
-    const cookie = request.headers.get("cookie") || "";
-    if (!cookie.includes("admin_token=")) {
+    const cookieStore = await cookies();
+    const token = cookieStore.get("admin_token");
+
+    if (!token) {
         return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
@@ -54,8 +57,10 @@ export async function POST(request: Request) {
 
 // PUT – update project
 export async function PUT(request: Request) {
-    const cookie = request.headers.get("cookie") || "";
-    if (!cookie.includes("admin_token=")) {
+    const cookieStore = await cookies();
+    const token = cookieStore.get("admin_token");
+
+    if (!token) {
         return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
@@ -90,8 +95,10 @@ export async function PUT(request: Request) {
 
 // PATCH – bulk update positions (auth checked)
 export async function PATCH(request: Request) {
-    const cookie = request.headers.get("cookie") || "";
-    if (!cookie.includes("admin_token=")) {
+    const cookieStore = await cookies();
+    const token = cookieStore.get("admin_token");
+
+    if (!token) {
         return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
@@ -112,8 +119,10 @@ export async function PATCH(request: Request) {
 
 // DELETE – remove project
 export async function DELETE(request: Request) {
-    const cookie = request.headers.get("cookie") || "";
-    if (!cookie.includes("admin_token=")) {
+    const cookieStore = await cookies();
+    const token = cookieStore.get("admin_token");
+
+    if (!token) {
         return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 

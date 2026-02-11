@@ -2,7 +2,7 @@
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import { HiAcademicCap } from "react-icons/hi";
-import { HiBadgeCheck } from "react-icons/hi";
+
 import { GlowingEffect } from "./ui/glowing-effect";
 
 const education = [
@@ -16,7 +16,7 @@ const education = [
         year: "2023 — 2025",
         institution: "MAAC Institute",
         degree: "Advanced Program in Digital Media & Design",
-        detail: "Specialized in motion graphics, 3D, and digital media",
+        detail: "Specialized in motion graphics, 2D, and digital media",
     },
     {
         year: "2020 — 2021",
@@ -32,13 +32,7 @@ const education = [
     },
 ];
 
-const certifications = [
-    { name: "React", issuer: "Meta — 2024" },
-    { name: "JavaScript", issuer: "Meta — 2024" },
-    { name: "UI/UX Design", issuer: "Coursera — 2024" },
-    { name: "Bootstrap", issuer: "Coursera — 2024" },
-    { name: "SAP Fundamentals", issuer: "Coursera" },
-];
+
 
 export default function Education() {
     const ref = useRef(null);
@@ -54,8 +48,7 @@ export default function Education() {
                 >
                     <span className="section-label">Background</span>
                     <h2 className="section-title">
-                        Education &{" "}
-                        <span className="gradient-text">Certifications</span>
+                        <span className="gradient-text">Education</span>
                     </h2>
                 </motion.div>
 
@@ -98,42 +91,7 @@ export default function Education() {
                     ))}
                 </div>
 
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={isInView ? { opacity: 1, y: 0 } : {}}
-                    transition={{ delay: 0.5 }}
-                >
-                    <h3
-                        style={{
-                            fontSize: "1.2rem",
-                            marginBottom: 4,
-                            display: "flex",
-                            alignItems: "center",
-                            gap: 8,
-                        }}
-                    >
-                        <HiBadgeCheck style={{ color: "var(--accent-gold)" }} />
-                        Certifications
-                    </h3>
-                    <div className="certs-grid">
-                        {certifications.map((cert, i) => (
-                            <motion.div
-                                key={i}
-                                className="cert-card glass-card"
-                                initial={{ opacity: 0, scale: 0.9 }}
-                                animate={isInView ? { opacity: 1, scale: 1 } : {}}
-                                transition={{ delay: 0.6 + i * 0.08 }}
-                                whileHover={{ scale: 1.03 }}
-                            >
-                                <div className="cert-icon">🏅</div>
-                                <div>
-                                    <div className="cert-name">{cert.name}</div>
-                                    <div className="cert-issuer">{cert.issuer}</div>
-                                </div>
-                            </motion.div>
-                        ))}
-                    </div>
-                </motion.div>
+
             </div>
         </section>
     );

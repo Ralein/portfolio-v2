@@ -48,13 +48,7 @@ export default function Navbar() {
                 transition={{ duration: 0.6, ease: "easeInOut" }}
             >
                 <div className="navbar-inner">
-                    <motion.div
-                        className="navbar-logo"
-                        whileHover={{ scale: 1.05 }}
-                        onClick={() => handleClick("#home")}
-                    >
-                        {"<Ralein />"}
-                    </motion.div>
+
 
                     <ul className="navbar-links">
                         {navLinks.map((link) => (
