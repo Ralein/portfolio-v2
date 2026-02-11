@@ -89,17 +89,10 @@ export default function Experience() {
                 <div className="timeline" ref={timelineRef}>
                     {/* Animated Line */}
                     <motion.div
+                        className="timeline-animated-line"
                         style={{
                             scaleY,
-                            height: "100%",
-                            position: "absolute",
-                            top: 0,
-                            left: "50%",
-                            width: "2px",
-                            background: "linear-gradient(to bottom, var(--accent-red), var(--accent-orange))",
                             transformOrigin: "top",
-                            translateX: "-50%",
-                            zIndex: 1, // Behind the dots (2) but above background
                         }}
                     />
 

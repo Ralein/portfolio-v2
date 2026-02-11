@@ -47,37 +47,10 @@ export default function Navbar() {
                 animate={{ y: 0 }}
                 transition={{ duration: 0.6, ease: "easeInOut" }}
             >
-                <div className="navbar-inner">
 
+                    
 
-                    <ul className="navbar-links">
-                        {navLinks.map((link) => (
-                            <li key={link.href}>
-                                <a
-                                    className={activeSection === link.href.replace("#", "") ? "active" : ""}
-                                    onClick={(e) => {
-                                        e.preventDefault();
-                                        handleClick(link.href);
-                                    }}
-                                    href={link.href}
-                                >
-                                    {link.label}
-                                </a>
-                            </li>
-                        ))}
-                    </ul>
-
-
-                    <button
-                        className={`hamburger ${mobileOpen ? "open" : ""}`}
-                        onClick={() => setMobileOpen(!mobileOpen)}
-                        aria-label="Toggle menu"
-                    >
-                        <span />
-                        <span />
-                        <span />
-                    </button>
-                </div>
+                    
             </motion.nav>
 
             <AnimatePresence>
@@ -85,7 +58,7 @@ export default function Navbar() {
                     <>
                         <motion.div
                             className="mobile-overlay open"
-                            initial={{ opacity: 0 }}
+                            initial={{ opacity: 0 }}    
                             animate={{ opacity: 1 }}
                             exit={{ opacity: 0 }}
                             onClick={() => setMobileOpen(false)}

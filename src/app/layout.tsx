@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter, Space_Grotesk } from "next/font/google";
+import Legal from "@/components/Legal";
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
@@ -9,7 +10,7 @@ const spaceGrotesk = Space_Grotesk({
 });
 
 export const metadata: Metadata = {
-    title: "Ralein Nova — Fullstack Developer & UI/UX Designer",
+    title: "Ralein Nova — Portfolio",
     description:
         "Portfolio of Ralein Nova R L — Fullstack Developer, UI/UX Designer, and Next.js Enthusiast. Building modern, accessible, and AI-powered web experiences.",
     keywords: [
@@ -39,6 +40,7 @@ export default function RootLayout({
     return (
         <html lang="en">
             <body className={`${inter.variable} ${spaceGrotesk.variable}`}>
+                <Legal />
                 {children}
             </body>
         </html>
