@@ -1438,15 +1438,9 @@ img {
 /* --- Mobile (max-width: 768px) --- */
 @media (max-width: 768px) {
 
-  /* Navbar: Show Hamburger, Hide Links */
-  .navbar-links {
-    display: none;
-    /* Hide desktop links */
-  }
-
-  .hamburger {
-    display: flex;
-    /* Show hamburger */
+  /* Navbar: Hide on Mobile */
+  .navbar {
+    display: none !important;
   }
 
   .navbar-cta-desktop {
