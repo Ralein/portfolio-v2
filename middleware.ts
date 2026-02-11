@@ -9,19 +9,19 @@ const SECRET = new TextEncoder().encode(
 export async function middleware(request: NextRequest) {
     const { pathname } = request.nextUrl;
 
-    // Only protect /admin routes (not /admin/login or /api)
-    if (pathname.startsWith("/admin") && !pathname.startsWith("/admin/login")) {
+    // Only protect /admin routes (not /login or /api)
+    if (pathname.startsWith("/admin")) {
         const token = request.cookies.get("admin_token")?.value;
 
         if (!token) {
-            return NextResponse.redirect(new URL("/admin/login", request.url));
+            return NextResponse.redirect(new URL("/login", request.url));
         }
 
         try {
             await jwtVerify(token, SECRET);
             return NextResponse.next();
         } catch {
-            return NextResponse.redirect(new URL("/admin/login", request.url));
+            return NextResponse.redirect(new URL("/login", request.url));
         }
     }
 

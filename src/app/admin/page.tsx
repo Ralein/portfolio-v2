@@ -37,20 +37,6 @@ const emptyProject: Omit<Project, "id"> = {
     position: 0,
 };
 
-// Hardcoded Figma project
-const figmaProject: Project = {
-    id: "figma-raleinex",
-    title: "Raleinex",
-    description: "A premium Clothing brand UI/UX design built in Figma",
-    category: "UI/UX",
-    tags: ["Figma", "UI/UX", "Photoshop", "Indesign"],
-    liveUrl: "https://www.figma.com/design/JeOAEcDRbsWibJIpSiR1RX/Raleinex?node-id=0-1",
-    githubUrl: "",
-    image: "",
-    featured: true,
-    position: -1, // Always at top
-};
-
 export default function AdminDashboard() {
     const [projects, setProjects] = useState<Project[]>([]);
     const [modalOpen, setModalOpen] = useState(false);
@@ -63,10 +49,7 @@ export default function AdminDashboard() {
     const loadProjects = useCallback(async () => {
         try {
             const res = await fetch("/api/projects");
-            if (res.ok) {
-                const dbProjects = await res.json();
-                setProjects([figmaProject, ...dbProjects]);
-            }
+            if (res.ok) setProjects(await res.json());
         } catch { }
     }, []);
 
@@ -76,7 +59,7 @@ export default function AdminDashboard() {
 
     const handleLogout = async () => {
         await fetch("/api/auth/logout", { method: "POST" });
-        router.push("/admin/login");
+        router.push("/login");
     };
 
     const openCreateModal = () => {
@@ -148,9 +131,6 @@ export default function AdminDashboard() {
 
         if (targetIndex < 0 || targetIndex >= projects.length) return;
 
-        // Prevent moving the hardcoded project
-        if (newProjects[index].id === figmaProject.id || newProjects[targetIndex].id === figmaProject.id) return;
-
         // Swap positions
         const temp = newProjects[index];
         newProjects[index] = newProjects[targetIndex];
@@ -159,9 +139,8 @@ export default function AdminDashboard() {
         // Update local state first for immediate feedback
         setProjects([...newProjects]);
 
-        // Map new indices to positions (exclude hardcoded one)
-        const dbProjects = newProjects.filter(p => p.id !== figmaProject.id);
-        const positions = dbProjects.map((p, i) => ({
+        // Map new indices to positions
+        const positions = newProjects.map((p, i) => ({
             id: p.id,
             position: i,
         }));
@@ -238,36 +217,22 @@ export default function AdminDashboard() {
                                         <button
                                             className="admin-btn"
                                             onClick={() => moveProject(index, "up")}
-                                            disabled={index === 0 || project.id === figmaProject.id || projects[index - 1]?.id === figmaProject.id}
-                                            style={{ padding: "4px 8px", opacity: project.id === figmaProject.id ? 0.3 : 1 }}
+                                            disabled={index === 0}
+                                            style={{ padding: "4px 8px" }}
                                         >
                                             <HiArrowUp />
                                         </button>
                                         <button
                                             className="admin-btn"
                                             onClick={() => moveProject(index, "down")}
-                                            disabled={index === projects.length - 1 || project.id === figmaProject.id || projects[index + 1]?.id === figmaProject.id}
-                                            style={{ padding: "4px 8px", opacity: project.id === figmaProject.id ? 0.3 : 1 }}
+                                            disabled={index === projects.length - 1}
+                                            style={{ padding: "4px 8px" }}
                                         >
                                             <HiArrowDown />
                                         </button>
                                     </div>
                                 </td>
-                                <td style={{ fontWeight: 500 }}>
-                                    {project.title}
-                                    {project.id === figmaProject.id && (
-                                        <span style={{
-                                            fontSize: "0.65rem",
-                                            background: "rgba(255, 255, 255, 0.1)",
-                                            padding: "2px 6px",
-                                            borderRadius: 4,
-                                            marginLeft: 8,
-                                            opacity: 0.7
-                                        }}>
-                                            HARDCODED
-                                        </span>
-                                    )}
-                                </td>
+                                <td style={{ fontWeight: 500 }}>{project.title}</td>
                                 <td>
                                     <span className="project-tag">{project.category}</span>
                                 </td>
@@ -318,16 +283,12 @@ export default function AdminDashboard() {
                                         <button
                                             className="admin-btn admin-btn-edit"
                                             onClick={() => openEditModal(project)}
-                                            disabled={project.id === figmaProject.id}
-                                            style={{ opacity: project.id === figmaProject.id ? 0.3 : 1, cursor: project.id === figmaProject.id ? "not-allowed" : "pointer" }}
                                         >
                                             <HiPencil /> Edit
                                         </button>
                                         <button
                                             className="admin-btn admin-btn-delete"
                                             onClick={() => handleDelete(project.id)}
-                                            disabled={project.id === figmaProject.id}
-                                            style={{ opacity: project.id === figmaProject.id ? 0.3 : 1, cursor: project.id === figmaProject.id ? "not-allowed" : "pointer" }}
                                         >
                                             <HiTrash /> Delete
                                         </button>
