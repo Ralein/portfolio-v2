@@ -23,7 +23,7 @@ export const metadata: Metadata = {
     ],
     authors: [{ name: "Ralein Nova R L" }],
     openGraph: {
-        title: "Ralein Nova — Fullstack Developer & UI/UX Designer",
+        title: "Ralein Nova — Portfolio",
         description:
             "Building modern, accessible, and AI-powered web experiences.",
         type: "website",
