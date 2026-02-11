@@ -1,7 +1,7 @@
 "use client";
 import { motion, AnimatePresence } from "framer-motion";
 import { useInView } from "framer-motion";
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import {
     SiReact,
     SiNextdotjs,
@@ -62,7 +62,7 @@ const techStack = [
     { name: "Docker", icon: SiDocker, color: "#2496ED" },
 ];
 
-const stats = [
+const initialStats = [
     { number: "50+", label: "Repositories" },
     { number: "8+", label: "Live Projects" },
 ];
@@ -73,6 +73,24 @@ export default function About() {
     const ref = useRef(null);
     const isInView = useInView(ref, { once: true, margin: "-100px" });
     const [page, setPage] = useState(0);
+    const [stats, setStats] = useState(initialStats);
+
+    useEffect(() => {
+        fetch("/api/projects")
+            .then((res) => res.json())
+            .then((data) => {
+                if (Array.isArray(data)) {
+                    // Count projects (assuming all in DB are 'live' enough to count)
+                    // If you strictly want projects with liveUrl: data.filter(p => p.liveUrl).length
+                    const count = data.length;
+                    setStats([
+                        initialStats[0],
+                        { number: `${count}+`, label: "Live Projects" }
+                    ]);
+                }
+            })
+            .catch(() => { });
+    }, []);
 
     const totalPages = Math.ceil(techStack.length / ITEMS_PER_PAGE);
     const currentTech = techStack.slice(
