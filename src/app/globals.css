@@ -932,6 +932,22 @@ img {
   color: var(--accent-red);
 }
 
+/* Figma Embed */
+.figma-iframe-wrapper {
+  width: 100%;
+  height: 340px;
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+  background: linear-gradient(135deg, #0a0a1a 0%, #1a0a1a 50%, #0a0a1a 100%);
+}
+
+.figma-iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
 /* ============ EXPERIENCE ============ */
 .timeline {
   position: relative;
