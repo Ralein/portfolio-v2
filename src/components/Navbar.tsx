@@ -47,7 +47,29 @@ export default function Navbar() {
                 animate={{ y: 0 }}
                 transition={{ duration: 0.6, ease: "easeInOut" }}
             >
+  <div className="navbar-inner">
 
+
+                    <ul className="navbar-links">
+                        {navLinks.map((link) => (
+                            <li key={link.href}>
+                                <a
+                                    className={activeSection === link.href.replace("#", "") ? "active" : ""}
+                                    onClick={(e) => {
+                                        e.preventDefault();
+                                        handleClick(link.href);
+                                    }}
+                                    href={link.href}
+                                >
+                                    {link.label}
+                                </a>
+                            </li>
+                        ))}
+                    </ul>
+
+
+                  
+                </div>
                     
 
                     
