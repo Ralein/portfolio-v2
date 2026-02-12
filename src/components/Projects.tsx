@@ -17,11 +17,11 @@ interface Project {
     featured: boolean;
 }
 
-const categories = ["All", "Live", "AI/ML", "Web App", "UI/UX"];
+const categories = ["Featured", "All", "Live", "AI/ML", "Web App", "UI/UX"];
 
 export default function Projects() {
     const [projects, setProjects] = useState<Project[]>([]);
-    const [filter, setFilter] = useState("All");
+    const [filter, setFilter] = useState("Featured");
     const ref = useRef(null);
     const isInView = useInView(ref, { once: true, margin: "-100px" });
 
@@ -34,6 +34,7 @@ export default function Projects() {
 
     const filtered = projects.filter((p) => {
         if (filter === "All") return true;
+        if (filter === "Featured") return p.featured;
         if (filter === "Live") return !!p.liveUrl;
         return p.category === filter;
     });
